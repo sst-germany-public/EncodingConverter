@@ -37,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "markdown", "markdown", "{4B
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SST.Encoding.Converter", "SST.Enconding.Converter\SST.Encoding.Converter.csproj", "{A82D773D-DA85-27BB-232D-E5D2435EF9C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncodingConverter", "EncodingConverter\EncodingConverter.csproj", "{A82D773D-DA85-27BB-232D-E5D2435EF9C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{DBBCFB74-A8CB-4227-9ABA-3257D768BF07}"
 	ProjectSection(SolutionItems) = preProject

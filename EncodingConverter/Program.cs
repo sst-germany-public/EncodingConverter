@@ -6,12 +6,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CommandLine;
-using SST.Encoding.Converter.Models;
+using EncodingConverter.Models;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-namespace SST.Encoding.Converter
+namespace EncodingConverter
 {
     internal class Program
     {

@@ -23,12 +23,12 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackAsTool>true</PackAsTool>
 		<PackageOutputPath>..\.nuget\</PackageOutputPath>
-		<ToolCommandName>SST.Encoding.Converter</ToolCommandName>
+		<ToolCommandName>EncodingConverter</ToolCommandName>
 		<SelfContained>false</SelfContained>
 		<PublishSingleFile>false</PublishSingleFile>
 		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/sst-germany-public/SST.Encoding.Converter</RepositoryUrl>
-		<PackageProjectUrl>https://github.com/sst-germany-public/SST.Encoding.Converter</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/sst-germany-public/EncodingConverter</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/sst-germany-public/EncodingConverter</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>

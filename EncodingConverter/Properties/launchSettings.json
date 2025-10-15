@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "EncodingConverter": {
+      "commandName": "Project",
+      "commandLineArgs": "--searchpattern \"*.h,*.cpp\" -r",
+      "workingDirectory": "D:\\_github\\sst-germany\\apps_dpcs_v5"
+    }
+  }
+}
