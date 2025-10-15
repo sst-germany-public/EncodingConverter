@@ -86,8 +86,8 @@ jobs:
         run: dotnet build -c Release 
 
       # Pack
-      - name: 🚀 Pack
-        run: dotnet pack -c Release --no-build --output .\.nuget
+      #- name: 🚀 Pack
+      #  run: dotnet pack -c Release --no-build --output .\.nuget
 
       # NuGet
       - name: 🚀 Alle NuGet-Pakete auflisten.
@@ -97,6 +97,7 @@ jobs:
       # Paket auf nuget.org veröffentlichen
       # Get a short-lived NuGet API key
       - name: 🚀 NuGet login (OIDC → temp API key)
+        if: ${{ github.event.inputs.modeChoice == 'Release' || github.event.inputs.modeChoice == 'Pre-Release' }}
         uses: NuGet/login@v1
         id: login
         with:
@@ -104,6 +105,7 @@ jobs:
     
       # Push the package
       - name: 🚀 NuGet push
+        if: ${{ github.event.inputs.modeChoice == 'Release' || github.event.inputs.modeChoice == 'Pre-Release' }}
         run: dotnet nuget push .\.nuget\*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
 
 
