@@ -1,0 +1,115 @@
+name: Build-and-Deploy        
+
+on:
+  workflow_dispatch: # manuell starten   
+    inputs:
+      modeChoice:
+        description: "Deploy type:"
+        required: true
+        default: "Release"
+        type: choice
+        options:
+          - Release
+          - Pre-Release
+          - Test-Only
+
+
+env:
+  Cfg_OutDirectory: ${{ github.workspace }}\git-lfs-audit\bin\Release\net8.0
+                                        
+permissions:
+  contents: write
+  id-token: write  # enable GitHub OIDC token issuance for this job
+    
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: 🐞 Print INPUT information
+        run: |
+          Write-Host "Inputs.modeChoice = ${{ github.event.inputs.modeChoice }}"
+
+      - name: 🔧 Checkout (Projekt)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+
+      - name: 🔍 NBGV (Validation, Release)
+        if: ${{ github.event.inputs.modeChoice == 'Release' }}
+        uses: sst-germany-public/actions_nbgvValidate@main
+        with:
+          path: "./${{ env.Cfg_PortName }}"
+          requiresPublicRelease: "yes"         # "yes" | "no" | "" (leer = keine Validierung)
+          requiresPrereleaseVersion: "no"      # "yes" | "no" | "" (leer = keine Validierung)
+         
+      - name: 🔍 NBGV (Validation, Pre-Release)
+        if: ${{ github.event.inputs.modeChoice == 'Pre-Release' }}
+        uses: sst-germany-public/actions_nbgvValidate@main
+        with:
+          path: "./${{ env.Cfg_PortName }}"
+          requiresPublicRelease: "no"          # "yes" | "no" | "" (leer = keine Validierung)
+          requiresPrereleaseVersion: "yes"     # "yes" | "no" | "" (leer = keine Validierung)
+
+      - name: 🔍 NBGV (Validation, Test-Only)
+        if: ${{ github.event.inputs.modeChoice == 'Test-Only' }}
+        uses: sst-germany-public/actions_nbgvValidate@main
+        with:
+          path: "./${{ env.Cfg_PortName }}"
+          requiresPublicRelease: ""            # "yes" | "no" | "" (leer = keine Validierung)
+          requiresPrereleaseVersion: ""        # "yes" | "no" | "" (leer = keine Validierung)
+
+
+      # Setup
+      - name: 🔧 MSBuild (setup path).
+        uses: microsoft/setup-msbuild@v2
+
+      - name: 🔧 Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x 
+
+      # NuGet installieren
+      #- name: Setup NuGet
+      #  uses: NuGet/setup-nuget@v1
+      #  with:
+      #    nuget-version: 'latest'
+
+      # Restore
+      - name: 🚀 Restore
+        run: dotnet restore
+
+      # Build
+      - name: 🚀 Build
+        run: dotnet build -c Release 
+
+      # Pack
+      - name: 🚀 Pack
+        run: dotnet pack -c Release --no-build --output .\.nuget
+
+      # NuGet
+      - name: 🚀 Alle NuGet-Pakete auflisten.
+        run: Get-ChildItem ".\.nuget"
+
+
+      # Paket auf nuget.org veröffentlichen
+      # Get a short-lived NuGet API key
+      - name: 🚀 NuGet login (OIDC → temp API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: sst-germany-public-bot # Recommended: use a secret like ${{ secrets.NUGET_USER }} for your nuget.org username (profile name), NOT your email address
+    
+      # Push the package
+      - name: 🚀 NuGet push
+        run: dotnet nuget push .\.nuget\*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+
+
+      - name: 🚀 Create tag
+        if: ${{ github.event.inputs.modeChoice == 'Release' || github.event.inputs.modeChoice == 'Pre-Release' }}
+        shell: pwsh
+        run: |
+          git tag "releases/v$env:NBGV_Version"
+          git push origin "releases/v$env:NBGV_Version"
