@@ -1,14 +1,14 @@
-﻿# SST.Encoding.Converter
+﻿# EncodingConverter
 
-[![NuGet Version](https://img.shields.io/nuget/v/EncodingConverter.svg)](https://www.nuget.org/packages/SST.Encoding.Converter/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sst-germany-public/SST.Encoding.Converter/blob/main/LICENSE.md)
+[![NuGet Version](https://img.shields.io/nuget/v/EncodingConverter.svg)](https://www.nuget.org/packages/EncodingConverter/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sst-germany-public/EncodingConverter/blob/main/LICENSE.md)
 
 ## 🧩 Overview
 
-**SST.Encoding.Converter** is a command-line tool designed to **convert text files between different encodings / code pages**.  
+**EncodingConverter** is a command-line tool designed to **convert text files between different encodings / code pages**.  
 For example, Visual Studio often creates source files using **Code Page 1252 (Windows-1252)**. If you use non-ASCII characters such as `ä`, `ö`, or `ü`, these files typically need to be converted to **UTF-8 (Code Page 65001)**.
 
-Doing this manually for dozens or hundreds of files is tedious — **SST.Encoding.Converter** automates the entire process quickly.
+Doing this manually for dozens or hundreds of files is tedious — **EncodingConverter** automates the entire process quickly.
 
 ---
 
@@ -17,16 +17,16 @@ Doing this manually for dozens or hundreds of files is tedious — **SST.Encodin
 The tool is distributed as a **NuGet package**.
 
 ```bash
-dotnet tool install --global SST.Encoding.Converter
+dotnet tool install --global EncodingConverter
 ````
 
 Or within a specific project:
 
 ```bash
-dotnet add package SST.Encoding.Converter
+dotnet add package EncodingConverter
 ```
 
-After installation, the executable `SST.Encoding.Converter` (or `SST.Encoding.Converter.exe`) becomes available.
+After installation, the executable `EncodingConverter` (or `EncodingConverter.exe`) becomes available.
 
 ---
 
@@ -35,13 +35,13 @@ After installation, the executable `SST.Encoding.Converter` (or `SST.Encoding.Co
 Basic syntax:
 
 ```bash
-SST.Encoding.Converter [options]
+EncodingConverter [options]
 ```
 
 ### Example
 
 ```bash
-SST.Encoding.Converter -d "C:\Projects\MyApp" -s "*.h,*.cpp" --OutputCodePage 65001 -r --verbose
+EncodingConverter -d "C:\Projects\MyApp" -s "*.h,*.cpp" --OutputCodePage 65001 -r --verbose
 ```
 
 This example recursively searches the given directory for `.h` and `.cpp` files
