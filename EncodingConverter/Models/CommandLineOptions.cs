@@ -13,8 +13,8 @@ namespace EncodingConverter.Models
         [CommandLine.Option('d', "directory", Required = false, HelpText = "Specifies the directory that is used to search for the files.")]
         public string? Directory { get; set; } = ".\\";
 
-        [CommandLine.Option('s', "searchpattern", Required = false, HelpText = "Sample: '*.h' or '*.h,*.cpp'.")]
-        public string? SearchPattern { get; set; } = "*.*";
+        [CommandLine.Option('s', "searchpattern", Required = true, HelpText = "Sample: '*.h' or '*.h,*.cpp'.")]
+        public string? SearchPattern { get; set; } = null;
 
         [CommandLine.Option('r', "recursive", Required = false, HelpText = "Recursive directory processing.")]
         public bool Recursive { get; set; } = false;
