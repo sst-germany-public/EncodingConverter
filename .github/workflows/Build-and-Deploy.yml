@@ -90,7 +90,7 @@ jobs:
       #  run: dotnet pack -c Release --no-build --output .\.nuget
 
       # NuGet
-      - name: 🚀 Alle NuGet-Pakete auflisten.
+      - name: 🐞 Alle NuGet-Pakete auflisten.
         run: Get-ChildItem ".\.nuget"
 
 
