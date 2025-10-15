@@ -39,6 +39,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "markdown", "markdown", "{4B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SST.Encoding.Converter", "SST.Enconding.Converter\SST.Encoding.Converter.csproj", "{A82D773D-DA85-27BB-232D-E5D2435EF9C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{DBBCFB74-A8CB-4227-9ABA-3257D768BF07}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\Build-and-Deploy.yml = .github\workflows\Build-and-Deploy.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +64,7 @@ Global
 		{83A45ECD-D7DD-4EA8-989D-2EDC3FBDF46F} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
 		{C4236E05-08F9-4F4E-8229-30EB1D17900C} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
 		{4B46C9DB-554D-4F34-9690-57A9F708AC40} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{DBBCFB74-A8CB-4227-9ABA-3257D768BF07} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {195EE533-ED13-465B-9363-F3FD6D70F946}

@@ -6,12 +6,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using CommandLine;
-using EncodingConverter.Models;
+using SST.Encoding.Converter.Models;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-namespace EncodingConverter
+namespace SST.Encoding.Converter
 {
     internal class Program
     {
@@ -115,9 +115,9 @@ namespace EncodingConverter
                 throw new CommandLineException(ErrorCodes.InputDirectoryNotFound);
             }
 
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            var inputEncoding = Encoding.GetEncoding(o.InputCodePage);
-            var outputEncoding = Encoding.GetEncoding(o.OutputCodePage);
+            System.Text.Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            var inputEncoding = System.Text.Encoding.GetEncoding(o.InputCodePage);
+            var outputEncoding = System.Text.Encoding.GetEncoding(o.OutputCodePage);
             //var utf8Bom = new UTF8Encoding(encoderShouldEmitUTF8Identifier: true);
 
             s_log.Info("Converting in directory: {0}", inputDirectory);

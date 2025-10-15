@@ -1,7 +1,7 @@
 ﻿// Copyright© 2025 sst-germany.de. All rights reserved. SST Scheubeck GmbH, Albrecht-Dürer-Str.36, 06217 Merseburg, Germany.
 using System;
 
-namespace EncodingConverter
+namespace SST.Encoding.Converter
 {
     [Serializable]
     public class CommandLineException : Exception
