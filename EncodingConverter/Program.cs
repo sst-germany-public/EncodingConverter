@@ -171,11 +171,11 @@ namespace EncodingConverter
 
             if (errorCount > 0)
             {
-                s_log.Error("Conversion of {0} files completed with {1} errors.", fileCount, errorCount);
+                s_log.Error("Conversion of {0} written files completed with {1} errors.", fileCount, errorCount);
             }
             else
             {
-                s_log.Info("Conversion of {0} files successfully completed.", fileCount);
+                s_log.Info("Conversion of {0} files successfully written.", fileCount);
             }
         }
     }
