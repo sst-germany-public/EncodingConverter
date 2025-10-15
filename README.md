@@ -1,0 +1,1 @@
+﻿# SST.Encondig.Converter

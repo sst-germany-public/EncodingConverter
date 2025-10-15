@@ -1,0 +1,11 @@
+<Project>
+	<!-- General Projekt Setup -->
+	<PropertyGroup>
+		<Company>SST Scheubeck GmbH</Company>
+		<Authors>SST Scheubeck GmbH</Authors>
+		<Copyright>Copyright © SST Scheubeck GmbH $([System.DateTime]::Now.ToString("yyyy"))</Copyright>
+		<Product Condition="'$(Configuration)'=='Debug'">$(MSBuildProjectName) (Debug)</Product>
+		<Product Condition="'$(Configuration)'=='Release'">$(MSBuildProjectName)</Product>
+	</PropertyGroup>
+
+</Project>

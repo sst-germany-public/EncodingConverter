@@ -1,0 +1,20 @@
+﻿<Project>
+  <!-- (NuGet) Cleanup previous NuGet packages. -->
+  <Target Name="DeletePreviousNugetPackages" BeforeTargets="Build">
+    <ItemGroup>
+      <SstFilesToProcess Remove="@(SstFilesToProcess)" />
+      <!-- Das ist ein Trick um sicherzustellen, dass das erste Zeichen eine Zahl (von 1-9) sein muss. RegEx wird hier nicht unterstützt.-->
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).1*.nupkg" />
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).2*.nupkg" />
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).3*.nupkg" />
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).4*.nupkg" />
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).5*.nupkg" />
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).6*.nupkg" />
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).7*.nupkg" />
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).8*.nupkg" />
+      <SstFilesToProcess Include="$(PackageOutputPath)$(MSBuildProjectName).9*.nupkg" />
+    </ItemGroup>
+
+    <Delete Files="@(SstFilesToProcess)" ContinueOnError="true" />
+  </Target>
+</Project>
